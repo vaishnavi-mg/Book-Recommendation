@@ -10,7 +10,7 @@ const app = express();
 // ✅ Allow only your frontend domain
 app.use(
   cors({
-    origin: ['https://book-recommendation-frontend-qb1b.vercel.app'],
+    origin: ['https://68e93503cbf69b87349f970f--venerable-florentine-63962b.netlify.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
