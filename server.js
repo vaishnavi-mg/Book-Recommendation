@@ -7,7 +7,14 @@ const path = require('path');
 const booksRouter = require('./routes/books');
 
 const app = express();
-app.use(cors());
+
+// ✅ Allow your Vercel frontend to access backend
+app.use(cors({
+  origin: ['https://book-recommendation-frontend-qb1b.vercel.app'], // Vercel frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Serve uploaded book covers
