@@ -10,7 +10,7 @@ const app = express();
 
 // ✅ Allow your Vercel frontend to access backend
 app.use(cors({
-  origin: ['https://book-recommendation-frontend-qb1b.vercel.app'], // Vercel frontend URL
+  origin: ['https://book-recommendation-frontend-qb1b.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
@@ -23,13 +23,13 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // API routes
 app.use('/api/books', booksRouter);
 
-// Serve React frontend in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-  });
-}
+// ❌ Remove frontend serving since it's hosted on Vercel
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../frontend/build')));
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+//   });
+// }
 
 const PORT = process.env.PORT || 5000;
 
